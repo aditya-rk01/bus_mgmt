@@ -8,6 +8,7 @@ import com.example.bus_mgmt.passenger.passenger;
 import com.example.bus_mgmt.route.route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.bus_mgmt.ticket.ticket_dao_jdbc;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,6 +19,8 @@ public class ticket_service {
 
     @Autowired
     private ticket_dao ticketDao;
+    @Autowired
+    private ticket_dao_jdbc ticketDaoJdbc;
 
     //initializing services
     @Autowired
@@ -30,11 +33,11 @@ public class ticket_service {
     public route_service rServ;
 
     public List<ticket> getAll_ticket_details(){
-        return ticketDao.findAll();
+        return ticketDaoJdbc.getAll();
     }
 
     public ticket get_ticket_details(int number){
-        return ticketDao.findById(number).get();
+        return ticketDaoJdbc.getTicketById(number);
     }
 
     //check how many tickets at present + 1
@@ -55,7 +58,7 @@ public class ticket_service {
                 a_ticket.setBno(assign_bno); //update the object variable from null to value
                 a_ticket.setFare(fare); //update the object variable from null to value
                 a_ticket.setTid(generateTicketno()); //update the object variable from null to value
-                ticketDao.save(a_ticket); //insert ticket in database
+                ticketDaoJdbc.addTicket(a_ticket); //insert ticket in database
             }
         }
     }
@@ -105,8 +108,8 @@ public class ticket_service {
             {
                 if(all_bus.get(i).getAvailable()>0) //if in such bus, seat is available or not
                 {
-                    all_bus.get(i).setAvailable(all_bus.get(i).getAvailable()-1); //reduce the number of availble seats by 1
-                    bServ.updateBus(all_bus.get(i));  //write object in database
+                    all_bus.get(i).setAvailable(all_bus.get(i).getAvailable());
+                    //bServ.updateBus(all_bus.get(i));  //write object in database
                     return all_bus.get(i).getNumber(); //return the bus number in which seat is booked.
                 }
             }
