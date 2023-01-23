@@ -1,14 +1,13 @@
 package com.example.bus_mgmt.ticket;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import javax.validation.constraints.NotNull;
 
-@Entity
 public class ticket {
-    @Id
     private int tid;
     private int pid;
-    private String src;
+    @NotNull(message = "DEFAULT")
+    public String src;
+    @NotNull
     private String dest;
     private int bno;
     private int fare;

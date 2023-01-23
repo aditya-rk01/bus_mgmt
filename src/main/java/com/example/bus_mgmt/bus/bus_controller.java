@@ -1,8 +1,11 @@
 package com.example.bus_mgmt.bus;
 
+import com.example.bus_mgmt.strd_error;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,13 +19,13 @@ public class bus_controller {
     }
 
     @GetMapping("/buses/{number}")
-    public bus get_bus_details(@PathVariable int number){
+    public bus get_bus_details(@PathVariable int number) throws strd_error {
         return busService.get_bus_details(number);
     }
 
-    @PostMapping("/buses")
-    public void addBus(@RequestBody bus a_bus){
-        busService.addBus(a_bus);
+    @PostMapping("/add-bus")
+    public bus addBus(@Valid @RequestBody bus a_bus) throws strd_error {
+        return busService.addBus(a_bus);
     }
 
     @PutMapping("/buses/{id}")

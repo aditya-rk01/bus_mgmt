@@ -2,6 +2,7 @@ package com.example.bus_mgmt;
 
 import com.example.bus_mgmt.ticket.ticket_dao_jdbc;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication

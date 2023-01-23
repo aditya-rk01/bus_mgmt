@@ -1,13 +1,19 @@
 package com.example.bus_mgmt.bus;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.validation.annotation.Validated;
 
 @Entity
 public class bus {
     @Id
     private int number; //bus number
+    @NotNull(message = "Src not avl")
     private String src; //source place
+    @NotNull(message = "Dest not avl")
     private String dest; //destination place
     private int capacity; //seating capacity
     private int available; //available seats
@@ -20,9 +26,9 @@ public class bus {
         this.available = available;
     }
 
-    public bus() {
-    }
+    public bus(){
 
+    }
     public int getNumber() {
         return number;
     }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.bus_mgmt.ticket.ticket_dao_jdbc;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,8 +18,10 @@ import java.util.Objects;
 @Service
 public class ticket_service {
 
+    /*
     @Autowired
     private ticket_dao ticketDao;
+    */
     @Autowired
     private ticket_dao_jdbc ticketDaoJdbc;
 
@@ -47,7 +50,8 @@ public class ticket_service {
     }
 
     //function to book ticket
-    public void addTicket(ticket a_ticket){
+    public void addTicket( ticket a_ticket){
+        System.out.println(a_ticket.getSrc()+" "+a_ticket.getDest());
         if(checkPassenger(a_ticket.getPid())) //check if passenger exists
         {
             int assign_bno=checkBusAvailiblity(a_ticket.getSrc(), a_ticket.getDest()); //check if bus is available, if so then lock seat in bus
@@ -117,7 +121,9 @@ public class ticket_service {
         return -1;
     }
 
+    /*
     public void updateTicket(ticket u_ticket){
         ticketDao.save(u_ticket);
     }
+    */
 }

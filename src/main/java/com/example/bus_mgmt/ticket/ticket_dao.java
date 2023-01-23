@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Optional;
 
-public interface ticket_dao extends JpaRepository<ticket, Integer> {
+public interface ticket_dao //extends JpaRepository<ticket, Integer>
+{
 
 }

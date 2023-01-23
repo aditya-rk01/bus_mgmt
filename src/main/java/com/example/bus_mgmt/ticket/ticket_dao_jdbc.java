@@ -46,7 +46,7 @@ public class ticket_dao_jdbc implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String sql = "CREATE TABLE IF NOT EXISTS ticket(tid int primary key, pid int, src varchar(255), dest varchar(255), bno int, fare int);";
+        String sql = "CREATE TABLE IF NOT EXISTS ticket(tid int primary key, pid int, src varchar(255) not null, dest varchar(255) not null, bno int, fare int);";
         jdbcTemplate.update(sql);
     }
 }

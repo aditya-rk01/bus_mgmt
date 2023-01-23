@@ -1,8 +1,10 @@
 package com.example.bus_mgmt.ticket;
 
+import com.example.bus_mgmt.strd_error;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,10 +23,12 @@ public class ticket_controller {
     }
 
     @PostMapping("/tickets")
-    public void addTicket(@RequestBody ticket a_ticket){
+    public void addTicket ( @RequestBody ticket a_ticket) {
         ticketService.addTicket(a_ticket);
     }
 
+    /*
     @PutMapping("/tickets/{id}")
     public void updateTicket(@RequestBody ticket u_ticket){ticketService.updateTicket(u_ticket);}
+    */
 }
